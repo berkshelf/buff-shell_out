@@ -31,7 +31,9 @@ module Buff
         begin
           pid         = Process.spawn(command, out: out.to_i, err: err.to_i)
           pid, status = Process.waitpid2(pid)
-          exitstatus  = status.exitstatus
+          # Check if we're getting back a process status because win32-process 6.x was a fucking MURDERER.
+          # https://github.com/djberg96/win32-process/blob/master/lib/win32/process.rb#L494-L519
+          exitstatus  = status.is_a?(Process::Status) ? status.exitstatus : status
         rescue Errno::ENOENT => ex
           exitstatus = 127
           out.write("")
