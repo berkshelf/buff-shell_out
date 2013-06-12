@@ -23,6 +23,14 @@ describe Buff::ShellOut do
         described_class.should_receive(:mri_out).with(command)
         result
       end
+
+      context "when Process.waitpid2 returns an Integer instead of a Process::Status" do
+        before { Process.stub(:waitpid2).and_return([12345, 0]) }
+
+        it "sets the exitstatus to the returned integer" do
+          expect(result.exitstatus).to eql(0)
+        end
+      end
     end
 
     context "when on JRuby" do
