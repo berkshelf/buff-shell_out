@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "buff-shell_out"
   spec.version       = Buff::ShellOut::VERSION
   spec.authors       = ["Jamie Winsor"]
-  spec.email         = ["reset@riotgames.com"]
+  spec.email         = ["jamie@vialstudios.com"]
   spec.description   = %q{A mixin for issuing shell commands and collecting the output}
   spec.summary       = %q{Buff up your code with a mixin for issuing shell commands and collecting the output}
   spec.homepage      = "https://github.com/RiotGames/buff-shell_out"
