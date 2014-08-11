@@ -20,7 +20,7 @@ describe Buff::ShellOut do
       before { described_class.stub(jruby?: false) }
 
       it "delegates to #mri_out" do
-        described_class.should_receive(:mri_out).with(command)
+        expect(described_class).to receive(:mri_out).with(command, {})
         result
       end
 
@@ -37,7 +37,7 @@ describe Buff::ShellOut do
       before { described_class.stub(jruby?: true) }
 
       it "delegates to #jruby_out" do
-        described_class.should_receive(:jruby_out).with(command)
+        expect(described_class).to receive(:jruby_out).with(command, {})
         result
       end
     end

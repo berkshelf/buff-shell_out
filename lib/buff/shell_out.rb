@@ -14,10 +14,13 @@ module Buff
     #
     # @param [String] command
     #   The command to execute
+    # @param [Hash] env
+    #   A hash of enviroment variables to set during execution
     #
     # @return [ShellOut::Response]
-    def shell_out(command)
-      process_status, out, err = jruby? ? jruby_out(command) : mri_out(command)
+    def shell_out(command, env = {})
+      env = process_env_vars(env)
+      process_status, out, err = jruby? ? jruby_out(command, env) : mri_out(command, env)
       Response.new(process_status, out, err)
     end
 
@@ -25,11 +28,11 @@ module Buff
 
       # @param [String] command
       #   The command to execute
-      def mri_out(command)
+      def mri_out(command, env = {})
         out, err = Tempfile.new('mixin.shell_out.stdout'), Tempfile.new('mixin.shell_out.stderr')
 
         begin
-          pid         = Process.spawn(command, out: out.to_i, err: err.to_i)
+          pid         = Process.spawn(env, command, out: out.to_i, err: err.to_i)
           pid, status = Process.waitpid2(pid)
           # Check if we're getting back a process status because win32-process 6.x was a fucking MURDERER.
           # https://github.com/djberg96/win32-process/blob/master/lib/win32/process.rb#L494-L519
@@ -48,10 +51,10 @@ module Buff
 
       # @param [String] command
       #   The command to execute
-      def jruby_out(command)
+      def jruby_out(command, env = {})
         out, err = StringIO.new, StringIO.new
         $stdout, $stderr = out, err
-        system(command)
+        system(env, command)
 
         exitstatus = $?.exitstatus
         out.rewind
@@ -60,6 +63,18 @@ module Buff
         [ exitstatus, out.read, err.read ]
       ensure
         $stdout, $stderr = STDOUT, STDERR
+      end
+
+      # Builds a new hash from the given vars hash. The new hash's keys are all uppercase
+      # strings representing environment variables.
+      #
+      # @param [Hash] vars
+      #   A hash of environment variables
+      def process_env_vars(vars)
+        vars.inject({}) do |acc, (key, val)|
+          acc[key.to_s.upcase] = val
+          acc
+        end
       end
   end
 end
