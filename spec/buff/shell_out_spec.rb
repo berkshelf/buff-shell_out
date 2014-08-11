@@ -31,7 +31,7 @@ describe Buff::ShellOut do
     end
 
     context "when on MRI" do
-      before { described_class.stub(jruby?: false) }
+      before { allow(described_class).to receive(:jruby?) { false } }
 
       it "delegates to #mri_out" do
         expect(described_class).to receive(:mri_out).with(command, {})
@@ -39,7 +39,7 @@ describe Buff::ShellOut do
       end
 
       context "when Process.waitpid2 returns an Integer instead of a Process::Status" do
-        before { Process.stub(:waitpid2).and_return([12345, 0]) }
+        before { allow(Process).to receive(:waitpid2) { [12345, 0] } }
 
         it "sets the exitstatus to the returned integer" do
           expect(result.exitstatus).to eql(0)
@@ -48,7 +48,7 @@ describe Buff::ShellOut do
     end
 
     context "when on JRuby" do
-      before { described_class.stub(jruby?: true) }
+      before { allow(described_class).to receive(:jruby?) { true } }
 
       it "delegates to #jruby_out" do
         expect(described_class).to receive(:jruby_out).with(command, {})
