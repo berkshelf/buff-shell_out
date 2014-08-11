@@ -23,11 +23,11 @@ describe Buff::ShellOut do
     end
 
     it "has a truth value for success?" do
-      expect(subject.success?).to be_true
+      expect(subject.success?).to eql(true)
     end
 
     it "has a false value for error?" do
-      expect(subject.error?).to be_false
+      expect(subject.error?).to eql(false)
     end
 
     context "when on MRI" do
