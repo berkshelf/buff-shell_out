@@ -10,11 +10,25 @@ describe Buff::ShellOut do
       expect(result).to be_a(described_class::Response)
     end
 
-    its(:stdout) { should be_a(String) }
-    its(:stderr) { should be_a(String) }
-    its(:exitstatus) { should be_a(Fixnum) }
-    its(:success?) { should be_true }
-    its(:error?) { should be_false }
+    it "has a string for stdout" do
+      expect(subject.stdout).to be_a(String)
+    end
+
+    it "has a string for stderr" do
+      expect(subject.stderr).to be_a(String)
+    end
+
+    it "has a fixnum for exitstatus" do
+      expect(subject.exitstatus).to be_a(Fixnum)
+    end
+
+    it "has a truth value for success?" do
+      expect(subject.success?).to be_true
+    end
+
+    it "has a false value for error?" do
+      expect(subject.error?).to be_false
+    end
 
     context "when on MRI" do
       before { described_class.stub(jruby?: false) }
