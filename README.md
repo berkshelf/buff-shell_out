@@ -1,6 +1,6 @@
 # Buff::ShellOut
-[![Gem Version](https://badge.fury.io/rb/buff-shell_out.png)](http://badge.fury.io/rb/buff-shell_out)
-[![Build Status](https://travis-ci.org/RiotGames/buff-shell_out.png?branch=master)](https://travis-ci.org/RiotGames/buff-shell_out)
+[![Gem Version](https://badge.fury.io/rb/buff-shell_out.svg)](http://badge.fury.io/rb/buff-shell_out)
+[![Build Status](https://travis-ci.org/berkshelf/buff-shell_out.svg?branch=master)](https://travis-ci.org/berkshelf/buff-shell_out)
 
 Buff up your code with a mixin for issuing shell commands and collecting the output
 
