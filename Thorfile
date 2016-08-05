@@ -17,17 +17,17 @@ class Default < Thor
 
     desc "build", "Build buff-shell_out-#{Buff::ShellOut::VERSION}.gem into the pkg directory"
     def build
-      Rake::Task["build"].execute
+      Rake::Task["build"].invoke
     end
 
     desc "install", "Build and install buff-shell_out-#{Buff::ShellOut::VERSION}.gem into system gems"
     def install
-      Rake::Task["install"].execute
+      Rake::Task["install"].invoke
     end
 
     desc "release", "Create tag v#{Buff::ShellOut::VERSION} and build and push buff-shell_out-#{Buff::ShellOut::VERSION}.gem to Rubygems"
     def release
-      Rake::Task["release"].execute
+      Rake::Task["release"].invoke
     end
   end
 
