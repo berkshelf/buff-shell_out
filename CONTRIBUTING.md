@@ -10,7 +10,7 @@ Install the latest version of [Bundler](http://gembundler.com)
 
 Clone the project
 
-    $ git clone git://github.com/RiotGames/buff-shell_out.git
+    $ git clone git://github.com/berkshelf/buff-shell_out.git
 
 and run:
 
