@@ -1,6 +1,6 @@
 # Buff::ShellOut
-[![Gem Version](https://badge.fury.io/rb/buff-shell_out.svg)](http://badge.fury.io/rb/buff-shell_out)
-[![Build Status](https://travis-ci.org/berkshelf/buff-shell_out.svg?branch=master)](https://travis-ci.org/berkshelf/buff-shell_out)
+
+[![Gem Version](https://badge.fury.io/rb/buff-shell_out.svg)](http://badge.fury.io/rb/buff-shell_out) [![Build Status](https://travis-ci.org/berkshelf/buff-shell_out.svg?branch=master)](https://travis-ci.org/berkshelf/buff-shell_out)
 
 Buff up your code with a mixin for issuing shell commands and collecting the output
 
@@ -8,37 +8,47 @@ Buff up your code with a mixin for issuing shell commands and collecting the out
 
 Add this line to your application's Gemfile:
 
-    gem 'buff-shell_out'
+```ruby
+gem 'buff-shell_out'
+```
 
 And then execute:
 
-    $ bundle
+```shell
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install buff-shell_out
+```shell
+$ gem install buff-shell_out
+```
 
 ## Usage
 
-Using it as a mixin
+Using it as a mixin:
 
-    require 'buff/shell_out'
+```ruby
+require 'buff/shell_out'
 
-    class PowerUp
-      include Buff::ShellOut
-    end
+class PowerUp
+  include Buff::ShellOut
+end
 
-    power_up = PowerUp.new
-    power_up.shell_out("ls") #=> <#Buff::ShellOut::Response @exitstatus=0, @stdout="...", @stderr="...">
+power_up = PowerUp.new
+power_up.shell_out("ls") #=> <#Buff::ShellOut::Response @exitstatus=0, @stdout="...", @stderr="...">
+```
 
-Using it as a module
+Using it as a module:
 
-    require 'buff/shell_out'
+```ruby
+require 'buff/shell_out'
 
-    Buff::ShellOut.shell_out("ls") #=> <#Buff::ShellOut::Response @exitstatus=0, @stdout="...", @stderr="...">
+Buff::ShellOut.shell_out("ls") #=> <#Buff::ShellOut::Response @exitstatus=0, @stdout="...", @stderr="...">
+```
 
 # Authors and Contributors
 
-* Jamie Winsor (<jamie@vialstudios.com>)
+- Jamie Winsor ([jamie@vialstudios.com](mailto:jamie@vialstudios.com))
 
-Thank you to all of our [Contributors](https://github.com/RiotGames/buff-shell_out/graphs/contributors), testers, and users.
+Thank you to all of our [Contributors](https://github.com/berkshelf/buff-shell_out/graphs/contributors), testers, and users.

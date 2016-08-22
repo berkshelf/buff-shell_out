@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["jamie@vialstudios.com"]
   spec.description   = %q{A mixin for issuing shell commands and collecting the output}
   spec.summary       = %q{Buff up your code with a mixin for issuing shell commands and collecting the output}
-  spec.homepage      = "https://github.com/RiotGames/buff-shell_out"
+  spec.homepage      = "https://github.com/berkshelf/buff-shell_out"
   spec.license       = "Apache 2.0"
 
   spec.files         = `git ls-files`.split($/)
